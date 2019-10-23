@@ -1,19 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Product } from '../interfaces/product';
-import { resolve } from 'path';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { FileUpload } from '../interfaces/fileUpload';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  productCollection: AngularFirestoreCollection = this.afs.collection('products');
+  productsCollection: AngularFirestoreCollection;
+
   constructor(private afs: AngularFirestore) { }
 
-  getProducts(): Observable<any[]> {
-    return this.productCollection.snapshotChanges();
-}
+  getProductsCollection(): Observable<any[]> {
+    this.productsCollection = this.afs.collection('products');
+    return this.productsCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        data.id = a.payload.doc.id;
+        return { ...data };
+      }))
+    );
+  }
+
+  updateProduct(productId, file) {
+    return this.getProductById(productId).set(file, { merge: true });
+  }
+
+  deleteProduct(productId) {
+    return this.getProductById(productId).delete();
+  }
+
+  getProductById(productId: string) {
+    return this.afs.doc(`products/${productId}`)
+  }
 }

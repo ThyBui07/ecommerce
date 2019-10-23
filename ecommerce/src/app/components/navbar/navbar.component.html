@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/login']">Log In</a>
+      <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/signup']">Sign Up</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" (click)="authservice.signOut()">Logout</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" [routerLink]="['/user/wishlist/:id']">Wish List</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.isAdmin" [routerLink]="['/admin']">Admin</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" [routerLink]="['/user/profile']">Account</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content >
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Ecommerce</span>
+      <!-- <div class="nav-icon" fxLayout="row" fxLayoutGap="20px">
+      <button mat-icon-button><mat-icon>shopping_cart</mat-icon></button>
+      <button mat-button>Log In</button>
+      <button mat-flat-button color="warn" >Sign Up</button>
+      <button mat-mini-fab color="accent" *ngIf="(authservice.user$ | async)?.uid"><mat-icon>home</mat-icon></button>
+      <button mat-flat-button color="warn"  >Sign Out</button>
+      </div> -->
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

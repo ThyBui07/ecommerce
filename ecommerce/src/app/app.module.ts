@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from './core/core.module';
-import { ViewModule } from './views/view.module';
+import { MaterialModule } from './shared/material.module';
 
 
 @NgModule({
@@ -16,12 +16,10 @@ import { ViewModule } from './views/view.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
     CoreModule,
 
-    ViewModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

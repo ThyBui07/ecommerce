@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Product Edit</h1>
+<div mat-dialog-content>
+<form [formGroup]="productForm" fxLayout="column"  fxLayoutGap="30px">
+
+<h3>Name: {{ data.name }}</h3>
+<mat-form-field class="full-width">
+<input matInput placeholder="{{ data.name }}" name="productName" name="productName" formControlName="productName" required>
+<mat-error *ngIf="productForm.get('productName').invalid">You must enter a value</mat-error>
+</mat-form-field>
+
+<h3>Price: {{ data.price }}</h3>
+<mat-form-field class="full-width">
+<input matInput placeholder="{{ data.price }}" name="price" name="price" formControlName="price" required><span matPrefix>€&nbsp;</span>
+<mat-error *ngIf="productForm.get('price').invalid">You must enter a value</mat-error>
+</mat-form-field>
+</form>
+<mat-card-actions>
+<button mat-raised-button color="primary" (click)="updateProduct()">Update</button>
+<button mat-raised-button color="warn" (click)="onNoClick()" >Cancel</button>
+</mat-card-actions>
+</div>
+
+
+

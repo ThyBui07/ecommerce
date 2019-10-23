@@ -1,0 +1,21 @@
+.my-card {
+  margin-top: 40px;
+}
+.my-form{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-card-header-text {
+  /* CSS styles go here */
+  margin: 0px !important ; // for example to remove the margin
+}
+
+.mat-card>.mat-card-actions:last-child {
+  margin-bottom: 5px !important;
+}

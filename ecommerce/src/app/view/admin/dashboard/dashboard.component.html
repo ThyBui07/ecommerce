@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="space-around start" class="container-top">
+  <!-- admin actions -->
+  <div fxFlex="20%">
+      <app-add-admin></app-add-admin>
+  </div>
+  <div fxFlex="30%">
+    <app-product-upload></app-product-upload>
+  </div>
+</div>
+
+  <h1>Products List</h1>
+    <mat-grid-list cols="3" rowHeight="500px" fxLayoutAlign="space-around none">
+    <mat-grid-tile *ngFor="let product of products" >
+      <mat-card fxFlex="70%" class="example-card" >
+          <mat-card-header>
+            <mat-card-title > {{ product?.productName }}</mat-card-title>
+            <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <img mat-card-image class="productImg" src="{{ product.productURL }}" alt="Photo of a Shiba Inu">
+              <p>Price: {{ product?.price }} <span matPrefix>€&nbsp;</span></p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" (click)="openDialog(product)">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteProduct(product)">Delete</button>
+          </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>

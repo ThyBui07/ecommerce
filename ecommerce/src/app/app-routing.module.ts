@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProductsComponent } from './views/products/products.component';
+//admin guard
+import { AdminGuardGuard } from './guard/admin-guard.guard';
 
 const routes: Routes = [
-  {path: 'user', loadChildren: './components/user/user.module#UserModule'},
-  {path: '', pathMatch:'full', redirectTo: 'menu'},
-  {path: 'menu', pathMatch:'full', component: ProductsComponent }
+  {path: '', pathMatch: 'full', redirectTo: 'product'},
+  {path: 'product', loadChildren: './view/product/product.module#ProductModule'},
+  {path: 'user', loadChildren: './view/user/user.module#UserModule'},
+  {path: 'admin', loadChildren: './view/admin/admin.module#AdminModule',  canActivate: [AdminGuardGuard]},
 ];
 
 @NgModule({

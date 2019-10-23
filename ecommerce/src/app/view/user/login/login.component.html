@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+<div fxFlex="25">
+<mat-card class="my-card">
+    <mat-card-header>
+        <mat-card-title>Log In</mat-card-title>
+      </mat-card-header>
+    <mat-card-content>
+      <div class="social-media">
+          <a mat-raised-button color="warn" class="full-width" (click)="loginWithGoogle()">
+              <span class="fab fa-google"></span> Sign in with Google
+          </a>
+      </div>
+      <form class="my-form" #formData='ngForm' (ngSubmit)="loginWithEmail(formData)">
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input  matInput  placeholder="Email" name="email" (ngModel)="email" name="email" required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input  matInput  placeholder="Password" name="password" (ngModel)="password" name="password" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+          </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button class="full-width" (click)="loginWithEmail(formData)" color="primary">LOGIN</button>
+    </mat-card-actions>
+</mat-card>
+</div>
+</div>

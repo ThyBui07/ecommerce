@@ -1,0 +1,16 @@
+<mat-card class="my-card">
+    <mat-card-header>
+        <mat-card-title>Add Admin</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form #formData='ngForm' (ngSubmit)="addAdmin(formData)">
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input  matInput  placeholder="Email" name="email" (ngModel)="email" name="email" required>
+            </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button (click)="addAdmin(formData)" color="primary">Add Admin</button>
+      </mat-card-actions>
+</mat-card>

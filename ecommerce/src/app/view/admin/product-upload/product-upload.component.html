@@ -1,0 +1,32 @@
+<mat-card class="my-card">
+    <mat-card-header>
+        <mat-card-title>Image Upload</mat-card-title>
+    </mat-card-header>
+  <mat-card-content>
+      <input #imgUpload name="fileUpload" type="file" (change)="onFileSelected($event)" accept='image/*'>
+      <progress max="100" *ngIf="(uploadProgress | async)" [value]="(uploadProgress | async)"></progress>
+
+    <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Name" name="productName" formControlName="productName" required>
+        <mat-error *ngIf="uploadForm.get('productName').invalid">You must enter a value</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Select" formControlName="category">
+          <mat-option value="snacks">Snacks</mat-option>
+          <mat-option value="drinks">Drinks</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="price" type="number" class="example-right-align" formControlName="price" required>
+        <span matPrefix>€&nbsp;</span>
+        <mat-error *ngIf="uploadForm.get('price').invalid">You must enter a value</mat-error>
+      </mat-form-field>
+          <img mat-card-image class="full-width" [src]="imgSrc" *ngIf="imgSrc">
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+      <button mat-raised-button (click)="onSubmit()" color="primary">Upload</button>
+      <button mat-raised-button color="warn" (click)="cancelFileSelected(name)">Cancel</button>
+  </mat-card-actions>
+</mat-card>
