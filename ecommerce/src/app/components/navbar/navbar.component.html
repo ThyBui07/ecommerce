@@ -5,6 +5,7 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+      <a mat-list-item [routerLink]="['/product']">Home</a>
       <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/login']">Log In</a>
       <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/signup']">Sign Up</a>
       <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" (click)="authservice.signOut()">Logout</a>
