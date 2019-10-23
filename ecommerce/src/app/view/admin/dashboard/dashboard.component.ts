@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material';
 import { DialogOpenComponent } from '../dialog-open/dialog-open.component';
-import { FileUpload } from 'src/app/interfaces/fileUpload';
-import { runInThisContext } from 'vm';
-
 
 @Component({
   selector: 'app-dashboard',
