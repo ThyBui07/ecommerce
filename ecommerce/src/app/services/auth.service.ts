@@ -29,7 +29,7 @@ export class AuthService {
         switchMap(user => {
           if (user) {
             user.getIdTokenResult().then((idTokenResult) =>{
-              console.log(idTokenResult.claims.admin);
+              // console.log(idTokenResult.claims.admin);
               this.isAdmin = idTokenResult.claims.admin;
             })
             const addIsAdminFlag = map((user: User) => {
@@ -50,6 +50,9 @@ export class AuthService {
     this.functions.httpsCallable('addAdminRole')({email: email}).toPromise()
       .then(res => {
         console.log(1,res);
+        this.snackBar.open(`Admin added!`, `OK`, {
+          duration: 5000
+        });
       })
       .catch((err)  => console.error('error', err));
   }
@@ -80,8 +83,8 @@ export class AuthService {
       const data: User = {
         uid: user.uid,
         email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL
+        displayName: (user.displayName|| "Unknown").toString(),
+        photoURL: (user.photoURL|| "http://www.gravatar.com/avatar/?d=mm&s=100").toString()
       }
       return userRef.set(data, { merge: true });
   }

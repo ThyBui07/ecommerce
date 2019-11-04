@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-admin',
@@ -7,14 +8,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./add-admin.component.scss']
 })
 export class AddAdminComponent implements OnInit {
+  addAdminForm: FormGroup;
 
-  constructor(private authservice: AuthService) { }
+  constructor(private authservice: AuthService) {
+    this.addAdminForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+    })
+   }
 
   ngOnInit() {
   }
 
-  addAdmin(formData) {
-    console.log(formData.value.email);
-    this.authservice.addAdmin(formData.value.email);
+  addAdmin() {
+    console.log(this.addAdminForm.value.email);
+    this.authservice.addAdmin(this.addAdminForm.value.email);
   }
 }

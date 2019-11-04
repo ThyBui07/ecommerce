@@ -12,11 +12,11 @@ export class ProductService {
 
   constructor(private afs: AngularFirestore) { }
 
-  getProductsCollection(): Observable<any[]> {
+  getProductsCollection(): Observable<FileUpload[]> {
     this.productsCollection = this.afs.collection('products');
     return this.productsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        const data = a.payload.doc.data();
+        const data = <FileUpload>a.payload.doc.data();
         data.id = a.payload.doc.id;
         return { ...data };
       }))

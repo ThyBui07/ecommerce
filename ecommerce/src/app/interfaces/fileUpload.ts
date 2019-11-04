@@ -1,4 +1,6 @@
+
 export class FileUpload {
+  id?: string;
   name?: string;
   price?: number;
   category?: string;
@@ -8,4 +10,8 @@ export class FileUpload {
   // constructor(file: File) {
   //     this.file = file;
   // }
+}
+
+export class cartItem extends FileUpload{
+  quantity?: number;
 }

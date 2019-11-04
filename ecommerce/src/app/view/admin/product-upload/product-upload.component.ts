@@ -48,7 +48,6 @@ export class ProductUploadComponent implements OnInit {
         const uploadTask = this.angularFireStorage.upload(filePath, this.onSelectedImg);
       //progress
         this.uploadProgress = uploadTask.percentageChanges();
-        console.log(this.uploadProgress);
         console.log('Image uploaded!');
       //download url
         uploadTask.snapshotChanges().pipe(
@@ -62,7 +61,7 @@ export class ProductUploadComponent implements OnInit {
   }
 
   cancelFileSelected(){
-    //có thể đưa vào service
+    //can move to Service
     const deleteRef = this.angularFireStorage.ref(this.basePath);
     console.log(deleteRef);
     deleteRef.child(this.onSelectedImg.name).delete();

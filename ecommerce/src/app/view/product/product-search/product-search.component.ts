@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, BehaviorSubject, Observable, observable } from 'rxjs';
-import { SearchService } from 'src/app/services/search.service';
-import { FileUpload } from 'src/app/interfaces/fileUpload';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-product-search',
@@ -9,12 +8,27 @@ import { FileUpload } from 'src/app/interfaces/fileUpload';
   styleUrls: ['./product-search.component.scss']
 })
 export class ProductSearchComponent implements OnInit {
+  searchForm: FormGroup;
+  @Output() resultToEmit = new EventEmitter<string>();
 
-  constructor(private searchService: SearchService) { }
+  constructor(private productService: ProductService) {
+    this.searchForm = new FormGroup({
+      productName: new FormControl(''),
+    })
+   }
 
   ngOnInit() {
 
   }
 
+  sendResToParent() {
+    console.log(this.searchForm.value.productName);
+    this.resultToEmit.emit(this.searchForm.value.productName);
 
+    //reset form
+    // this.searchForm.reset();
+    // this.searchForm.setValue({
+    //   productName: ''
+    // });
+  }
 }

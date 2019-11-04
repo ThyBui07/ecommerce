@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,WAAW,CAAC;EACV,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,KAAK,AAAA,oBAAoB,CAAC;EACxB,eAAe,EAAE,SAAS;CAC3B",
+    "sources": [
+        "product-upload.component.scss"
+    ],
+    "names": [],
+    "file": "product-upload.component.css"
+}

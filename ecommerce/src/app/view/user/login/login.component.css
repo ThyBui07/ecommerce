@@ -1,7 +1,8 @@
 .my-card {
   margin-top: 40px;
 }
-.my-form{
+
+.my-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
@@ -9,9 +10,10 @@
 
 ::ng-deep .mat-card-header-text {
   /* CSS styles go here */
-  margin: 0px !important ; // for example to remove the margin
+  margin: 0px !important;
 }
 
-.mat-card>.mat-card-actions:last-child {
+.mat-card > .mat-card-actions:last-child {
   margin-bottom: 5px !important;
 }
+/*# sourceMappingURL=login.component.css.map */

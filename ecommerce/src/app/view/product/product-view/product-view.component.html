@@ -1,6 +1,34 @@
+<!-- product view -->
+<div class="top-container">
+  <!-- product search -->
+<app-product-search (resultToEmit)=searchRes($event)></app-product-search>
+
+
+<!-- product search show -->
+<div class="top-container" *ngIf="filterProducts.length >0; else AllProducts">
+<mat-grid-list cols="3" rowHeight="500px" fxLayoutAlign="space-around none">
+  <mat-grid-tile *ngFor="let product of filterProducts">
+      <mat-card fxFlex="80%" class="example-card" >
+          <mat-card-header>
+            <mat-card-title> {{ product.productName }}</mat-card-title>
+            <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <img mat-card-image class="productImg" src="{{ product.productURL }}">
+          </mat-card-content>
+          <mat-card-actions>
+              <button mat-raised-button color="accent" (click)="addToCart(product)">Add to Cart</button>
+          </mat-card-actions>
+      </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+</div>
+<!-- product show -->
+<ng-template #AllProducts>
 <mat-grid-list cols="3" rowHeight="500px" fxLayoutAlign="space-around none">
 <mat-grid-tile *ngFor="let product of products" >
-  <mat-card fxFlex="70%" class="example-card" >
+  <mat-card fxFlex="80%" class="example-card" >
       <mat-card-header>
         <mat-card-title> {{ product.productName }}</mat-card-title>
         <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
@@ -9,8 +37,12 @@
           <img mat-card-image class="productImg" src="{{ product.productURL }}">
       </mat-card-content>
       <mat-card-actions>
-          <button mat-raised-button color="accent">Add to Cart</button>
+          <button mat-raised-button color="accent" (click)="addToCart(product)">Add to Cart</button>
       </mat-card-actions>
   </mat-card>
 </mat-grid-tile>
 </mat-grid-list>
+</ng-template>
+
+
+</div>

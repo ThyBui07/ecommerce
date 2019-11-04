@@ -3,29 +3,28 @@
     <mat-card class="my-card">
       <mat-card-header>
         <mat-card-title>Profile</mat-card-title>
+        <mat-card-subtitle>Hello,{{ (currentUser || async)?.displayName }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <form fxLayout="column" fxLayoutGap="20px" class="my-form"[formGroup]="profileForm" (ngSubmit)="updateProfile(formData)">
+        <form fxLayout="column" fxLayoutGap="20px" class="my-form"[formGroup]="profileForm" (ngSubmit)="updateProfile()">
           <div >
-            <img mat-card-avatar class="avatarImage"  [src]="user$?.photoURL || imgSrc">
+            <img mat-card-avatar class="avatarImage"  [src]="(currentUser || async)?.photoURL">
           </div>
           <div>
             <input name="avatarUpload" type="file" (change)="onselectedImg($event)" accept='image/*'>
           </div>
           <div></div>
           <mat-form-field class="full-width">
-            <mat-label>{{ user$?.displayName }}</mat-label>
-            <input matInput placeholder="userName" name="userName" name="userName" formControlName="userName">
+            <mat-label>{{ (currentUser || async)?.displayName }}</mat-label>
+            <input matInput placeholder="Type a new username" formControlName="userName">
           </mat-form-field>
-          <!-- <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="password" name="password" (ngModel)="password" name="password" required>
-          </mat-form-field> -->
         </form>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button class="full-width" (click)="updateProfile(formData)" color="primary">Update</button>
+        <button mat-raised-button class="full-width" (click)="updateProfile()" color="primary">Update</button>
       </mat-card-actions>
     </mat-card>
   </div>
 </div>
+
+

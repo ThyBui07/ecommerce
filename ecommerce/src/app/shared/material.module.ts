@@ -13,9 +13,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
-import { MatFormFieldModule, MatSelectModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatTableModule } from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -39,6 +40,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatSelectModule,
     ReactiveFormsModule,
     MatGridListModule,
+    MatTableModule,
+    MatBadgeModule
   ],
   exports: [
     LayoutModule,
@@ -57,7 +60,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    MatBadgeModule
   ],
 })
 export class MaterialModule { }

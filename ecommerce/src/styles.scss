@@ -2,4 +2,13 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.admin { display: none;}
+.top-container {
+  margin-top: 30px;
+}
+.full-width {
+  width: 100%;
+}
+.productImg {
+  width: 300px;
+  height: 300px;
+}

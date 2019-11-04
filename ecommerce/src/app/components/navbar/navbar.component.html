@@ -8,10 +8,10 @@
       <a mat-list-item [routerLink]="['/product']">Home</a>
       <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/login']">Log In</a>
       <a mat-list-item *ngIf="!(authservice.user$ | async)?.uid" [routerLink]="['/user/signup']">Sign Up</a>
-      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" (click)="authservice.signOut()">Logout</a>
-      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" [routerLink]="['/user/wishlist/:id']">Wish List</a>
-      <a mat-list-item *ngIf="(authservice.user$ | async)?.isAdmin" [routerLink]="['/admin']">Admin</a>
       <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" [routerLink]="['/user/profile']">Account</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" [routerLink]="['/user/wishlist/:id']"><span [matBadge]="matBadge" matBadgeOverlap="false">Shopping Cart</span></a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.isAdmin" [routerLink]="['/admin']">Admin</a>
+      <a mat-list-item *ngIf="(authservice.user$ | async)?.uid" (click)="authservice.signOut()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content >
@@ -26,13 +26,6 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Ecommerce</span>
-      <!-- <div class="nav-icon" fxLayout="row" fxLayoutGap="20px">
-      <button mat-icon-button><mat-icon>shopping_cart</mat-icon></button>
-      <button mat-button>Log In</button>
-      <button mat-flat-button color="warn" >Sign Up</button>
-      <button mat-mini-fab color="accent" *ngIf="(authservice.user$ | async)?.uid"><mat-icon>home</mat-icon></button>
-      <button mat-flat-button color="warn"  >Sign Out</button>
-      </div> -->
       </mat-toolbar-row>
     </mat-toolbar>
     <router-outlet></router-outlet>

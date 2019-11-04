@@ -5,6 +5,7 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/fire
 import { FileUpload } from '../interfaces/fileUpload';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class FileUploadService {
 
   productsCollection: AngularFirestoreCollection = this.afs.collection('products');
 
-  constructor(private afs: AngularFirestore, private angularFireStorage: AngularFireStorage) { }
+  constructor(private afs: AngularFirestore, private angularFireStorage: AngularFireStorage, private snackBar: MatSnackBar) { }
 
   submitProduct(file) {
     return this.productsCollection.add(file);
@@ -27,7 +28,6 @@ export class FileUploadService {
     this.basePath = `uploadImages/${uploadTime.getUTCDate()}_${(uploadTime.getMonth() +1)}_${uploadTime.getUTCFullYear()}`;
     var filePath  =`${this.basePath}/${file.name}`;
     const uploadTask = this.angularFireStorage.upload(filePath, file);
-    console.log(uploadTask);
 
     //download url
     uploadTask.snapshotChanges().pipe(
@@ -39,5 +39,10 @@ export class FileUploadService {
       })
       )
       .subscribe();
+
+    //image upload success
+     this.snackBar.open(`Image Selected!`, `OK`, {
+      duration: 5000
+    });
   }
 }

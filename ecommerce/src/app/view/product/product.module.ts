@@ -9,11 +9,12 @@ import { MaterialModule } from 'src/app/shared/material.module';
 
 @NgModule({
   declarations: [ProductSearchComponent, ProductItemComponent, ProductViewComponent],
+  exports: [ProductSearchComponent, ProductItemComponent, ProductViewComponent],
   imports: [
     CommonModule,
     ProductRoutingModule,
     MaterialModule
   ],
-  exports: [ProductSearchComponent, ProductItemComponent, ProductViewComponent]
+
 })
 export class ProductModule { }

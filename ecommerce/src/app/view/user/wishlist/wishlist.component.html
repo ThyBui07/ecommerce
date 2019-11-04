@@ -1,3 +1,47 @@
-<p>
-  wishlist works!
-</p>
+<div class="top-container" fxLayout="column" fxLayoutAlign="space-around center">
+
+<table mat-table [dataSource]="cartListItems" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Item </th>
+      <td mat-cell *matCellDef="let cartListItem"> {{ cartListItem.productName }} </td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price </th>
+    <td mat-cell *matCellDef="let cartListItem"> {{cartListItem.price | currency: 'EUR'}} </td>
+    <td mat-footer-cell *matFooterCellDef>Total</td>
+  </ng-container>
+
+  <ng-container matColumnDef="quantity">
+    <th mat-header-cell *matHeaderCellDef> quantity </th>
+    <td mat-cell style="width:120px;" *matCellDef="let cartListItem">
+      <form [formGroup]="testForm" (keyup)="quantitySubmit()">
+        <mat-form-field appearance="outline">
+          <input matInput type="number" placeholder="{{ cartListItem.quantity }}" formControlName="test">
+        </mat-form-field>
+      </form>
+    </td>
+    <td mat-footer-cell *matFooterCellDef> {{ getTotalCost() | currency: 'EUR' }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell style="width:120px;" *matCellDef="let cartListItem">
+        <button mat-raised-button color="warn" (click)="deleteItem( cartListItem.id )">Remove</button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+
+  <div *ngIf="cartListItems.length == 0" fxLayout="column" fxLayoutAlign="space-around center">
+      <h5>Look Like You Have Nothing in Your Cart</h5>
+      <button mat-raised-button color="warn" [routerLink]="['/product']">Continue Shopping</button>
+  </div>
+
+</div>

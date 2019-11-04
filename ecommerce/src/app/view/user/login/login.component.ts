@@ -1,6 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,8 +11,14 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   hide = true;
+  loginForm: FormGroup;
 
-  constructor(private authservice: AuthService, private router: Router) { }
+  constructor(private authservice: AuthService, private router: Router) {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    })
+   }
 
   ngOnInit() {
   }
@@ -20,8 +27,8 @@ export class LoginComponent implements OnInit {
     this.authservice.googleLogin()
   }
 
-  loginWithEmail(formData){
-    this.authservice.emailLogin(formData.value.email, formData.value.password);
+  loginWithEmail(){
+    this.authservice.emailLogin(this.loginForm.value.email, this.loginForm.value.password);
   }
 
 
