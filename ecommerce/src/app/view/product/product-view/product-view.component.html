@@ -11,7 +11,8 @@
       <mat-card fxFlex="80%" class="example-card" >
           <mat-card-header>
             <mat-card-title> {{ product.productName }}</mat-card-title>
-            <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+            <mat-card-subtitle><p>Price: {{ product.price }} <span matPrefix>€&nbsp;</span></p></mat-card-subtitle>
+            <!-- <p>Price: {{ product.price }} <span matPrefix>€&nbsp;</span></p> -->
           </mat-card-header>
           <mat-card-content>
               <img mat-card-image class="productImg" src="{{ product.productURL }}">
@@ -31,7 +32,7 @@
   <mat-card fxFlex="80%" class="example-card" >
       <mat-card-header>
         <mat-card-title> {{ product.productName }}</mat-card-title>
-        <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+        <mat-card-subtitle><p>Price: {{ product.price }} <span matPrefix>€&nbsp;</span></p></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
           <img mat-card-image class="productImg" src="{{ product.productURL }}">
